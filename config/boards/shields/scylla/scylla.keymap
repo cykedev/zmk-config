@@ -1,0 +1,172 @@
+/*
+ * Copyright (c) 2022 Christian Eiden
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+
+#define DEFAULT 0
+#define LOWER   1
+#define RAISE   2
+#define ADJUST  3
+
+/ {
+
+  conditional_layers {
+      compatible = "zmk,conditional-layers";
+      tri_layer {
+          if-layers = <1 2>;
+          then-layer = <3>;
+      };
+  };
+
+  behaviors {
+      omt: own_mod_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "OWN_MOD_TAP";
+        #binding-cells = <2>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <200>;
+        quick-tap-ms = <200>;
+        bindings = <&kp>, <&kp>;
+      };
+      olt: own_layer_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "OWN_LAYER_TAP";
+        #binding-cells = <2>;
+        flavor = "tap-preferred";
+        tapping-term-ms = <130>;
+        quick-tap-ms = <200>;
+        bindings = <&mo>, <&kp>;
+      };
+      tt: tap_preferred {
+          compatible = "zmk,behavior-hold-tap";
+          label = "TAP_PREFERRED";
+          #binding-cells = <2>;
+          flavor = "tap-preferred";
+          tapping-term-ms = <200>;
+          quick-tap-ms = <200>;
+          bindings = <&kp>, <&kp>;
+      };
+  };
+
+  keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// | Esc  |   1  |   2  |   3  |   4  |   5  |                                  |   6  |   7  |   8  |   9  |   0  |  -   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// | Tab  |   Q  |   W  |   F  |   P  |   B  |                                  |   J  |   L  |   U  |   Y  |   ;  |  =   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |ShTab |   A  |   R  |   S  |   T  |   G  |                                  |   M  |   N  |   E  |   I  |   O  |  '   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// | Shft |   Z  |   X  |   C  |   D  |   V  |                                  |   K  |   H  |   ,  |  .   |   /  | Shft |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /  Del  /---------------.    .---------------\  Bsp  \  
+//                                 / RAISE / Space / Enter /      \ Enter \ Space \ LOWER \ 
+//                                '-------/ Shift /  CMD  /        \  CMD  \ Shift \-------'
+//                                       /---------------/          \---------------\
+//                                      /  Ctrl /  Opt  /            \  Opt  \ Ctrl  \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+
+      bindings = <
+&gresc       &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                                                               &kp N6          &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
+&kp TAB      &kp Q   &kp W   &kp F   &kp P   &kp B                                                                                &kp J           &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
+&kp LS(TAB)  &kp A   &kp R   &kp S   &kp T   &kp G                                                                                &kp M           &kp N   &kp E      &kp I    &kp O      &kp SQT 
+&kp LSHFT    &kp Z   &kp X   &kp C   &kp D   &kp V                                                                                &kp K           &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp RSHFT
+                                             &olt RAISE DEL  &omt LSHFT SPACE  &omt LCMD ENTER  &omt RCMD ENTER  &tt RSHFT SPACE  &olt LOWER BSPC 
+                                                             &kp LCTRL         &kp LALT         &kp RALT         &kp RCTRL 
+      >;
+    };
+        
+    lower_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// |      |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |   _  |      |   [  |   ]  |   +  |                                  |  +   | home |  up  | end  |      |  F12 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   | left | down | rght |  ?   |      |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |   {  |   }  |   =  |                                  |  =   |      |      |      |  \   |      |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /       /---------------.    .---------------\       \  
+//                                 /       /       /       /      \       \       \       \ 
+//                                '-------/       /       /        \       \       \-------'
+//                                       /---------------/          \---------------\
+//                                      /       /       /            \       \       \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+
+      bindings = <
+&trans  &kp F1     &kp F2  &kp F3    &kp F4    &kp F5                                     &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans  &kp UNDER  &none   &kp LBKT  &kp RBKT  &kp PLUS                                   &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
+&trans  &kp EXCL   &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                  &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &none 
+&trans  &none      &none   &kp LBRC  &kp RBRC  &kp EQUAL                                  &kp EQUAL  &none     &none     &none      &kp BSLH   &trans
+                                               &trans     &trans  &trans  &trans  &trans  &trans 
+                                                          &trans  &trans  &trans  &trans
+      >;
+    };
+
+    raise_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// |      |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  _   |      |   [  |   ]  |   +  |                                  |  +   |   $  |  #   |  %   |  _   |  F12 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   |   /  |  *   |  ^   |  ?   |      |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |   {  |   }  |   =  |                                  |  =   |   &  |  |   |  \   |  \   |      |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /       /---------------.    .---------------\       \  
+//                                 /       /       /       /      \       \       \       \ 
+//                                '-------/       /       /        \       \       \-------'
+//                                       /---------------/          \---------------\
+//                                      /       /       /            \       \       \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+          
+      bindings = <
+&trans  &kp F1     &kp F2  &kp F3    &kp F4    &kp F5                                     &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans  &kp UNDER  &none   &kp LBKT  &kp RBKT  &kp PLUS                                   &kp PLUS   &kp DLLR  &kp HASH  &kp PRCNT  &none      &kp F12
+&trans  &kp EXCL   &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                  &kp MINUS  &kp FSLH  &kp STAR  &kp CARET  &kp QMARK  &none 
+&trans  &none      &none   &kp LBRC  &kp RBRC  &kp EQUAL                                  &kp EQUAL  &kp AMPS  &kp PIPE  &kp BSLH   &kp BSLH   &trans
+                                               &trans     &trans  &trans  &trans  &trans  &trans 
+                                                          &trans  &trans  &trans  &trans
+      >;
+    };
+
+    adjust_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// |      |      |      |      |      |      |                                  |      |      |      |      |      |      |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |      |      |  V+  |                                  |  B + |      |      |      |      |      |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |      |      |  V-  |                                  |  B - |  <<  | play |  >>  |      |      |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |      |      | Mute |                                  |      |      |      |      |      |      |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /       /---------------.    .---------------\       \  
+//                                 /       /       /       /      \       \       \       \ 
+//                                '-------/       /       /        \       \       \-------'
+//                                       /---------------/          \---------------\
+//                                      /       /       /            \       \       \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+          
+      bindings = <
+&none  &none  &none  &none  &none  &none                                     &none         &none       &none     &none       &none  &none
+&none  &none  &none  &none  &none  &kp C_VOL_UP                              &kp C_BRI_UP  &none       &none     &none       &none  &none
+&none  &none  &none  &none  &none  &kp C_VOL_DN                              &kp C_BRI_DN  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none 
+&none  &none  &none  &none  &none  &kp C_MUTE                                &none         &none       &none     &none       &none  &none
+                                   &none         &none  &none  &none  &none  &none 
+                                                 &none  &none  &none  &none
+      >;
+    };
+
+  };
+};

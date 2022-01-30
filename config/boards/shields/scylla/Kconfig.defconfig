@@ -1,0 +1,27 @@
+# Copyright (c) 2022 Christian Eiden
+# SPDX-License-Identifier: MIT
+ 
+ 
+if SHIELD_SCYLLA_LEFT
+
+config ZMK_KEYBOARD_NAME
+	default "Scylla"
+
+config ZMK_SPLIT_BLE_ROLE_CENTRAL
+	default y
+
+endif
+
+if SHIELD_SCYLLA_RIGHT
+
+config ZMK_KEYBOARD_NAME
+	default "Scylla Right"
+
+endif
+
+if SHIELD_SCYLLA_LEFT || SHIELD_SCYLLA_RIGHT
+
+config ZMK_SPLIT
+	default y
+	
+endif

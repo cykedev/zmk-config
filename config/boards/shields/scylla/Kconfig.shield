@@ -1,0 +1,8 @@
+# Copyright (c) 2022 Christian Eiden
+# SPDX-License-Identifier: MIT
+
+config SHIELD_SCYLLA_LEFT
+	def_bool $(shields_list_contains,scylla_left)
+
+config SHIELD_SCYLLA_RIGHT
+	def_bool $(shields_list_contains,scylla_right)
