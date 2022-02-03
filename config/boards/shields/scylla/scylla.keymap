@@ -142,11 +142,11 @@
 
     adjust_layer {
 // .-----------------------------------------.                                  .-----------------------------------------.
-// |      |      |      |      |      |      |                                  |      |      |      |      |      |      |
+// |BT Clr| BT1  | BT2  | BT3  | BT4  | BT5  |                                  |      |      |      |      |      |      |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |      |      |      |      |  V+  |                                  |  B + |      |      |      |      |      |
+// |BT Nxt|      |      |      |      |  V+  |                                  |  B + |      |      |      |      |      |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |      |      |      |      |  V-  |                                  |  B - |  <<  | play |  >>  |      |      |
+// |BT Prv|      |      |      |      |  V-  |                                  |  B - |  <<  | play |  >>  |      |      |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // |      |      |      |      |      | Mute |                                  |      |      |      |      |      |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
@@ -159,12 +159,12 @@
 //                                    '---------------'                '---------------'
           
       bindings = <
-&none  &none  &none  &none  &none  &none                                     &none         &none       &none     &none       &none  &none
-&none  &none  &none  &none  &none  &kp C_VOL_UP                              &kp C_BRI_UP  &none       &none     &none       &none  &none
-&none  &none  &none  &none  &none  &kp C_VOL_DN                              &kp C_BRI_DN  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none 
-&none  &none  &none  &none  &none  &kp C_MUTE                                &none         &none       &none     &none       &none  &none
-                                   &none         &none  &none  &none  &none  &none 
-                                                 &none  &none  &none  &none
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                              &none         &none       &none     &none       &none  &none
+&bt BT_NXT  &none         &none         &none         &none         &kp C_VOL_UP                              &kp C_BRI_UP  &none       &none     &none       &none  &none
+&bt BT_PRV  &none         &none         &none         &none         &kp C_VOL_DN                              &kp C_BRI_DN  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none
+&none       &none         &none         &none         &none         &kp C_MUTE                                &none         &none       &none     &none       &none  &none
+                                                                    &none         &none  &none  &none  &none  &none
+                                                                                  &none  &none  &none  &none
       >;
     };
 
