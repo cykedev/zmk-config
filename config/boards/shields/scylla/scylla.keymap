@@ -103,7 +103,7 @@
 
     lower_layer {
 // .-----------------------------------------.                                  .-----------------------------------------.
-// |      |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+// |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   | home |  up  | end  |      |  F12 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
@@ -112,48 +112,48 @@
 // |      |      |      |   {  |   }  |   =  |                                  |  =   |      |      |      |  \   |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
 //                                  /       /---------------.    .---------------\       \  
-//                                 /       /       /       /      \       \       \       \ 
+//                                 /       /       /       /      \ Reset \       \       \ 
 //                                '-------/       /       /        \       \       \-------'
 //                                       /---------------/          \---------------\
-//                                      /       /       /            \       \       \
+//                                      /       /       /            \ Boot  \       \
 //                                     /       /       /              \       \       \
 //                                    '---------------'                '---------------'
 
       bindings = <
-&trans  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                     &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
-&trans  &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                   &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
-&trans  &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                  &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &none 
-&trans  &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                  &kp EQUAL  &none     &none     &none      &kp BSLH   &trans
-                                              &trans     &trans  &trans  &trans  &trans  &trans 
-                                                         &trans  &trans  &trans  &trans
+&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                          &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                        &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
+&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                       &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &none 
+&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                       &kp EQUAL  &none     &none     &none      &kp BSLH   &trans
+                                                 &trans     &trans  &trans  &reset       &trans  &trans 
+                                                            &trans  &trans  &bootloader  &trans
       >;
     };
 
     raise_layer {
 // .-----------------------------------------.                                  .-----------------------------------------.
-// |      |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+// |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   |   #  |  $   |  %   |  ^   |  F12 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   |   /  |  *   |  `   |  ?   |      |
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   |   /  |  *   |  ~   |  ?   |      |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // |      |      |      |   {  |   }  |   =  |                                  |  =   |   &  |  |   |  \   |  \   |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
 //                                  /       /---------------.    .---------------\       \  
-//                                 /       /       /       /      \       \       \       \ 
+//                                 /       /       / Reset /      \       \       \       \ 
 //                                '-------/       /       /        \       \       \-------'
 //                                       /---------------/          \---------------\
-//                                      /       /       /            \       \       \
+//                                      /       /  Boot /            \       \       \
 //                                     /       /       /              \       \       \
 //                                    '---------------'                '---------------'
           
       bindings = <
-&trans  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                     &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
-&trans  &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                   &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp F12
-&trans  &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                  &kp MINUS  &kp FSLH  &kp STAR  &kp GRAVE  &kp QMARK  &none 
-&trans  &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                  &kp EQUAL  &kp AMPS  &kp PIPE  &kp BSLH   &kp BSLH   &trans
-                                              &trans     &trans  &trans  &trans  &trans  &trans 
-                                                        &trans  &trans  &trans  &trans
+&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                          &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                        &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp F12
+&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                       &kp MINUS  &kp FSLH  &kp STAR  &kp TILDE  &kp QMARK  &none 
+&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                       &kp EQUAL  &kp AMPS  &kp PIPE  &kp BSLH   &kp BSLH   &trans
+                                                 &trans     &trans  &reset       &trans  &trans  &trans 
+                                                            &trans  &bootloader  &trans  &trans
       >;
     };
 
