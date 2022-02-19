@@ -14,17 +14,28 @@
 #define RAISE   2
 #define ADJUST  3
 
+#define BTAB    LS(TAB)
+#define RADEL   RAISE DEL
+#define LSPC    LSHFT SPACE
+#define LENT    LCMD ENTER
+#define RENT    RCMD ENTER
+#define RSPC    RSHFT SPACE
+#define LOBSP   LOWER BSPC
+
 / {
 
+  // enable ADJUST Layer
   conditional_layers {
       compatible = "zmk,conditional-layers";
       tri_layer {
-          if-layers = <1 2>;
-          then-layer = <3>;
+          if-layers = <LOWER RAISE>;
+          then-layer = <ADJUST>;
       };
   };
 
   behaviors {
+
+      // used for SPACE/SHIFT and ENTER/CMD
       omt: own_mod_tap {
         compatible = "zmk,behavior-hold-tap";
         label = "OWN_MOD_TAP";
@@ -34,6 +45,8 @@
         quick-tap-ms = <0>;
         bindings = <&kp>, <&kp>;
       };
+
+      // used for Layers/BSPC/DEL
       olt: own_layer_tap {
         compatible = "zmk,behavior-hold-tap";
         label = "OWN_LAYER_TAP";
@@ -44,6 +57,8 @@
         retro-tap;
         bindings = <&mo>, <&kp>;
       };
+
+      // used for right SPACE/SHIFT as I do some rolling with this finger
       tt: tap_preferred {
           compatible = "zmk,behavior-hold-tap";
           label = "TAP_PREFERRED";
@@ -77,12 +92,12 @@
 //                                    '---------------'                '---------------'
 
       bindings = <
-&gresc       &kp N1  &kp N2  &kp N3  &kp N4  &kp N5                                                                               &kp N6          &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
-&kp TAB      &kp Q   &kp W   &kp F   &kp P   &kp B                                                                                &kp J           &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
-&kp LS(TAB)  &kp A   &kp R   &kp S   &kp T   &kp G                                                                                &kp M           &kp N   &kp E      &kp I    &kp O      &kp SQT 
-&kp LSHFT    &kp Z   &kp X   &kp C   &kp D   &kp V                                                                                &kp K           &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp RSHFT
-                                             &olt RAISE DEL  &omt LSHFT SPACE  &omt LCMD ENTER  &omt RCMD ENTER  &tt RSHFT SPACE  &olt LOWER BSPC 
-                                                             &kp LCTRL         &kp LALT         &kp RALT         &kp RCTRL 
+&gresc     &kp N1  &kp N2  &kp N3  &kp N4  &kp  N5                                                 &kp  N6     &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
+&kp TAB    &kp Q   &kp W   &kp F   &kp P   &kp  B                                                  &kp  J      &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
+&kp BTAB   &kp A   &kp R   &kp S   &kp T   &kp  G                                                  &kp  M      &kp N   &kp E      &kp I    &kp O      &kp SQT 
+&kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                  &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp RSHFT
+                                           &olt RADEL  &omt LSPC   &omt LENT  &omt RENT  &tt RSPC  &olt LOBSP 
+                                                       &kp  LCTRL  &kp  LALT  &kp  RALT  &kp RCTRL 
       >;
     };
 
