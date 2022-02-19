@@ -31,7 +31,7 @@
         #binding-cells = <2>;
         flavor = "hold-preferred";
         tapping-term-ms = <200>;
-        quick-tap-ms = <400>;
+        quick-tap-ms = <0>;
         bindings = <&kp>, <&kp>;
       };
       olt: own_layer_tap {
@@ -40,7 +40,8 @@
         #binding-cells = <2>;
         flavor = "tap-preferred";
         tapping-term-ms = <130>;
-        quick-tap-ms = <400>;
+        quick-tap-ms = <300>;
+        retro-tap;
         bindings = <&mo>, <&kp>;
       };
       tt: tap_preferred {
@@ -49,7 +50,7 @@
           #binding-cells = <2>;
           flavor = "tap-preferred";
           tapping-term-ms = <200>;
-          quick-tap-ms = <400>;
+          quick-tap-ms = <0>;
           bindings = <&kp>, <&kp>;
       };
   };
