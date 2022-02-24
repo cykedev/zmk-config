@@ -51,7 +51,7 @@
         compatible = "zmk,behavior-hold-tap";
         label = "OWN_LAYER_TAP";
         #binding-cells = <2>;
-        flavor = "tap-preferred";
+        flavor = "hold-preferred";
         tapping-term-ms = <130>;
         quick-tap-ms = <220>;
         retro-tap;
