@@ -52,8 +52,8 @@
         label = "OWN_LAYER_TAP";
         #binding-cells = <2>;
         flavor = "balanced";
-        tapping-term-ms = <130>;
-        quick-tap-ms = <220>;
+        tapping-term-ms = <150>;
+        quick-tap-ms = <0>;
         bindings = <&mo>, <&kp>;
       };
 
