@@ -51,10 +51,13 @@
         compatible = "zmk,behavior-hold-tap";
         label = "OWN_LAYER_TAP";
         #binding-cells = <2>;
-        flavor = "balanced";
-        tapping-term-ms = <150>;
-        quick-tap-ms = <150>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <130>;
+        quick-tap-ms = <200>;
+        retro-tap;
         bindings = <&mo>, <&kp>;
+        // cursor and ? as I do a lot of rolling here
+        hold-trigger-key-positions = <20 31 32 33 34>;
       };
 
       // used for right SPACE/SHIFT as I do some rolling with this finger
