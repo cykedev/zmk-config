@@ -52,7 +52,7 @@
         label = "OWN_LAYER_TAP";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <130>;
+        tapping-term-ms = <70>;
         quick-tap-ms = <200>;
         retro-tap;
         bindings = <&mo>, <&kp>;
