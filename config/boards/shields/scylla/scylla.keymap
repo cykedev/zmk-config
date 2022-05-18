@@ -22,6 +22,10 @@
 #define RSPC    RSHFT SPACE
 #define LOBSP   LOWER BSPC
 
+&caps_word {
+    continue-list = <UNDERSCORE MINUS DEL BSPC LSHFT RSHFT>;
+};
+
 / {
 
   // enable ADJUST Layer
@@ -83,7 +87,7 @@
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // | <Tab |   A  |   R  |   S  |   T  |   G  |                                  |   M  |   N  |   E  |   I  |   O  |  '   |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// | Shft |   Z  |   X  |   C  |   D  |   V  |                                  |   K  |   H  |   ,  |  .   |   /  | Shft |
+// | Shft |   Z  |   X  |   C  |   D  |   V  |                                  |   K  |   H  |   ,  |  .   |   /  |   \  |
 // '-----------------------------------------/                                  \-----------------------------------------'
 //                                  /  Del  /---------------.    .---------------\  Bsp  \  
 //                                 / RAISE / Space / Enter /      \ Enter \ Space \ LOWER \ 
@@ -97,7 +101,7 @@
 &gresc     &kp N1  &kp N2  &kp N3  &kp N4  &kp  N5                                                 &kp  N6     &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
 &kp TAB    &kp Q   &kp W   &kp F   &kp P   &kp  B                                                  &kp  J      &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
 &kp BTAB   &kp A   &kp R   &kp S   &kp T   &kp  G                                                  &kp  M      &kp N   &kp E      &kp I    &kp O      &kp SQT 
-&kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                  &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp RSHFT
+&kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                  &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp BSLH
                                            &olt RADEL  &omt LSPC   &omt LENT  &omt RENT  &tt RSPC  &olt LOBSP 
                                                        &kp  LCTRL  &kp  LALT  &kp  RALT  &kp RCTRL 
       >;
@@ -109,12 +113,12 @@
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   | home |  up  | end  |      |  F12 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   | left | down | rght |  ?   |      |
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   | left | down | rght |  ?   |  _   |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |      |      |   {  |   }  |   =  |                                  |  =   |      |      |      |  \   |      |
+// |      |      |      |   {  |   }  |   =  |                                  |  =   |      |      |      |      |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
-//                                  /       /---------------.    .---------------\       \  
-//                                 /       /       /       /      \ Reset \       \       \ 
+//                                  /       /---------------.    .---------------\   #   \
+//                                 /       /       /  CAPS /      \ Reset \       \       \
 //                                '-------/       /       /        \       \       \-------'
 //                                       /---------------/          \---------------\
 //                                      /       /       /            \ Boot  \       \
@@ -122,12 +126,12 @@
 //                                    '---------------'                '---------------'
 
       bindings = <
-&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                          &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
-&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                        &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
-&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                       &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &none 
-&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                       &kp EQUAL  &none     &none     &none      &kp BSLH   &trans
-                                                 &trans     &trans  &trans  &reset       &trans  &trans 
-                                                            &trans  &trans  &bootloader  &trans
+&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                              &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
+&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                           &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &kp UNDER
+&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                           &kp EQUAL  &none     &none     &none      &none      &none
+                                                 &trans     &trans  &caps_word  &reset       &trans  &trans
+                                                            &trans  &trans      &bootloader  &trans
       >;
     };
 
@@ -135,14 +139,14 @@
 // .-----------------------------------------.                                  .-----------------------------------------.
 // |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   |   #  |  $   |  %   |  ^   |  F12 |
+// |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   |   #  |  $   |  %   |      |  F12 |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   |   /  |  *   |  ~   |  ?   |      |
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   |   /  |  *   |  ~   |  ?   |  _   |
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
-// |      |      |      |   {  |   }  |   =  |                                  |  =   |   &  |  |   |  \   |  \   |      |
+// |      |      |      |   {  |   }  |   =  |                                  |  =   |   &  |  |   |  ^   |      |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
-//                                  /       /---------------.    .---------------\       \  
-//                                 /       /       / Reset /      \       \       \       \ 
+//                                  /   #   /---------------.    .---------------\       \
+//                                 /       /       / Reset /      \ CAPS  \       \       \
 //                                '-------/       /       /        \       \       \-------'
 //                                       /---------------/          \---------------\
 //                                      /       /  Boot /            \       \       \
@@ -150,12 +154,12 @@
 //                                    '---------------'                '---------------'
           
       bindings = <
-&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                          &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
-&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                        &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &kp CARET  &kp F12
-&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                       &kp MINUS  &kp FSLH  &kp STAR  &kp TILDE  &kp QMARK  &none 
-&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                       &kp EQUAL  &kp AMPS  &kp PIPE  &kp BSLH   &kp BSLH   &trans
-                                                 &trans     &trans  &reset       &trans  &trans  &trans 
-                                                            &trans  &bootloader  &trans  &trans
+&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                              &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &none      &kp F12
+&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                           &kp MINUS  &kp FSLH  &kp STAR  &kp TILDE  &kp QMARK  &kp UNDER
+&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                           &kp EQUAL  &kp AMPS  &kp PIPE  &kp CARET  &trans     &trans
+                                                 &trans     &trans  &reset       &caps_word  &trans  &trans
+                                                            &trans  &bootloader  &trans      &trans
       >;
     };
 
@@ -169,7 +173,7 @@
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // |      |      |      |      |      | Mute |                                  |      |      |      |      |      |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
-//                                  /       /---------------.    .---------------\       \  
+//                                  /   #   /---------------.    .---------------\   #   \
 //                                 /       /       /       /      \       \       \       \ 
 //                                '-------/       /       /        \       \       \-------'
 //                                       /---------------/          \---------------\
