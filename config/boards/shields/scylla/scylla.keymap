@@ -130,7 +130,7 @@
 &trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
 &trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                           &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &kp UNDER
 &trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                           &kp EQUAL  &none     &none     &none      &none      &none
-                                                 &trans     &trans  &caps_word  &reset       &trans  &trans
+                                                 &trans     &trans  &caps_word  &sys_reset   &trans  &trans
                                                             &trans  &trans      &bootloader  &trans
       >;
     };
@@ -158,7 +158,7 @@
 &trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &none      &kp F12
 &trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                           &kp MINUS  &kp FSLH  &kp STAR  &kp TILDE  &kp QMARK  &kp UNDER
 &trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                           &kp EQUAL  &kp AMPS  &kp PIPE  &kp CARET  &trans     &trans
-                                                 &trans     &trans  &reset       &caps_word  &trans  &trans
+                                                 &trans     &trans  &sys_reset   &caps_word  &trans  &trans
                                                             &trans  &bootloader  &trans      &trans
       >;
     };
