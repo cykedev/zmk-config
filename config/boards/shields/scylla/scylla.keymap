@@ -45,8 +45,8 @@
         label = "OWN_MOD_TAP";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <200>;
-        quick-tap-ms = <0>;
+        tapping-term-ms = <150>;
+        quick-tap-ms = <200>;
         bindings = <&kp>, <&kp>;
       };
 
@@ -56,23 +56,9 @@
         label = "OWN_LAYER_TAP";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <70>;
+        tapping-term-ms = <150>;
         quick-tap-ms = <200>;
-        retro-tap;
         bindings = <&mo>, <&kp>;
-        // cursor and ? as I do a lot of rolling here
-        hold-trigger-key-positions = <20 31 32 33 34>;
-      };
-
-      // used for right SPACE/SHIFT as I do some rolling with this finger
-      tt: tap_preferred {
-          compatible = "zmk,behavior-hold-tap";
-          label = "TAP_PREFERRED";
-          #binding-cells = <2>;
-          flavor = "tap-preferred";
-          tapping-term-ms = <200>;
-          quick-tap-ms = <0>;
-          bindings = <&kp>, <&kp>;
       };
   };
 
@@ -98,12 +84,12 @@
 //                                    '---------------'                '---------------'
 
       bindings = <
-&gresc     &kp N1  &kp N2  &kp N3  &kp N4  &kp  N5                                                 &kp  N6     &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
-&kp TAB    &kp Q   &kp W   &kp F   &kp P   &kp  B                                                  &kp  J      &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
-&kp BTAB   &kp A   &kp R   &kp S   &kp T   &kp  G                                                  &kp  M      &kp N   &kp E      &kp I    &kp O      &kp SQT 
-&kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                  &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp BSLH
-                                           &olt RADEL  &omt LSPC   &omt LENT  &omt RENT  &tt RSPC  &olt LOBSP 
-                                                       &kp  LCTRL  &kp  LALT  &kp  RALT  &kp RCTRL 
+&gresc     &kp N1  &kp N2  &kp N3  &kp N4  &kp  N5                                                  &kp  N6     &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
+&kp TAB    &kp Q   &kp W   &kp F   &kp P   &kp  B                                                   &kp  J      &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
+&kp BTAB   &kp A   &kp R   &kp S   &kp T   &kp  G                                                   &kp  M      &kp N   &kp E      &kp I    &kp O      &kp SQT
+&kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                   &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp BSLH
+                                           &olt RADEL  &omt LSPC   &omt LENT  &omt RENT  &omt RSPC  &olt LOBSP
+                                                       &kp  LCTRL  &kp  LALT  &kp  RALT  &kp  RCTRL
       >;
     };
 
@@ -186,7 +172,7 @@
 &bt BT_NXT  &none         &none         &none         &none         &kp C_VOL_UP                              &kp C_BRI_UP  &none       &none     &none       &none  &out OUT_USB
 &bt BT_PRV  &none         &none         &none         &none         &kp C_VOL_DN                              &kp C_BRI_DN  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none
 &none       &none         &none         &none         &none         &kp C_MUTE                                &none         &none       &none     &none       &none  &none
-                                                                    &none         &none  &none  &none  &none  &none
+                                                                    &trans        &none  &none  &none  &none  &trans
                                                                                   &none  &none  &none  &none
       >;
     };
