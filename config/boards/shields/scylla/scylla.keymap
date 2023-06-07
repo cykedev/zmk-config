@@ -45,7 +45,7 @@
         label = "OWN_MOD_TAP";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <150>;
+        tapping-term-ms = <160>;
         quick-tap-ms = <200>;
         bindings = <&kp>, <&kp>;
       };
@@ -56,7 +56,7 @@
         label = "OWN_LAYER_TAP";
         #binding-cells = <2>;
         flavor = "hold-preferred";
-        tapping-term-ms = <150>;
+        tapping-term-ms = <160>;
         quick-tap-ms = <200>;
         bindings = <&mo>, <&kp>;
       };
