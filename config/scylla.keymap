@@ -1,0 +1,181 @@
+/*
+ * Copyright (c) 2022 Christian Eiden
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+
+#define DEFAULT 0
+#define LOWER   1
+#define RAISE   2
+#define ADJUST  3
+
+#define BTAB    LS(TAB)
+#define RADEL   RAISE DEL
+#define LSPC    LSHFT SPACE
+#define LENT    LCMD ENTER
+#define RENT    RCMD ENTER
+#define RSPC    RSHFT SPACE
+#define LOBSP   LOWER BSPC
+
+&caps_word {
+    continue-list = <UNDERSCORE MINUS DEL BSPC LSHFT RSHFT>;
+};
+
+/ {
+
+  // enable ADJUST Layer
+  conditional_layers {
+      compatible = "zmk,conditional-layers";
+      tri_layer {
+          if-layers = <LOWER RAISE>;
+          then-layer = <ADJUST>;
+      };
+  };
+
+  behaviors {
+
+      // used for SPACE/SHIFT and ENTER/CMD
+      omt: own_mod_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "OWN_MOD_TAP";
+        #binding-cells = <2>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <160>;
+        quick-tap-ms = <200>;
+        bindings = <&kp>, <&kp>;
+      };
+
+      // used for Layers/BSPC/DEL
+      olt: own_layer_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "OWN_LAYER_TAP";
+        #binding-cells = <2>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <160>;
+        quick-tap-ms = <200>;
+        bindings = <&mo>, <&kp>;
+      };
+  };
+
+  keymap {
+    compatible = "zmk,keymap";
+
+    default_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// | Esc  |   1  |   2  |   3  |   4  |   5  |                                  |   6  |   7  |   8  |   9  |   0  |  -   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// | Tab> |   Q  |   W  |   F  |   P  |   B  |                                  |   J  |   L  |   U  |   Y  |   ;  |  =   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// | <Tab |   A  |   R  |   S  |   T  |   G  |                                  |   M  |   N  |   E  |   I  |   O  |  '   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// | Shft |   Z  |   X  |   C  |   D  |   V  |                                  |   K  |   H  |   ,  |  .   |   /  |   \  |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /  Del  /---------------.    .---------------\  Bsp  \  
+//                                 / RAISE / Space / Enter /      \ Enter \ Space \ LOWER \ 
+//                                '-------/ Shift /  CMD  /        \  CMD  \ Shift \-------'
+//                                       /---------------/          \---------------\
+//                                      /  Ctrl /  Opt  /            \  Opt  \ Ctrl  \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+
+      bindings = <
+&gresc     &kp N1  &kp N2  &kp N3  &kp N4  &kp  N5                                                  &kp  N6     &kp N7  &kp N8     &kp N9   &kp N0     &kp MINUS
+&kp TAB    &kp Q   &kp W   &kp F   &kp P   &kp  B                                                   &kp  J      &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
+&kp BTAB   &kp A   &kp R   &kp S   &kp T   &kp  G                                                   &kp  M      &kp N   &kp E      &kp I    &kp O      &kp SQT
+&kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                   &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp BSLH
+                                           &olt RADEL  &omt LSPC   &omt LENT  &omt RENT  &omt RSPC  &olt LOBSP
+                                                       &kp  LCTRL  &kp  LALT  &kp  RALT  &kp  RCTRL
+      >;
+    };
+
+    lower_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   | home |  up  | end  |      |  F12 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   | left | down | rght |  ?   |  _   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |   {  |   }  |   =  |                                  |  =   |      |      |      |      |      |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /       /---------------.    .---------------\   #   \
+//                                 /       /       /  CAPS /      \ Reset \       \       \
+//                                '-------/       /       /        \       \       \-------'
+//                                       /---------------/          \---------------\
+//                                      /       /       /            \ Boot  \       \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+
+      bindings = <
+&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                              &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HOME  &kp UP    &kp END    &none      &kp F12
+&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                           &kp MINUS  &kp LEFT  &kp DOWN  &kp RIGHT  &kp QMARK  &kp UNDER
+&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                           &kp EQUAL  &none     &none     &none      &none      &none
+                                                 &trans     &trans  &caps_word  &sys_reset   &trans  &trans
+                                                            &trans  &trans      &bootloader  &trans
+      >;
+    };
+
+    raise_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// |   `  |  F1  |  F2  |  F3  |  F4  |  F5  |                                  |  F6  |  F7  |  F8  |  F9  |  F10 |  F11 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  <   |  >   |   [  |   ]  |   +  |                                  |  +   |   #  |  $   |  %   |      |  F12 |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |  !   |  @   |   (  |   )  |   -  |                                  |  -   |   /  |  *   |  ~   |  ?   |  _   |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |   {  |   }  |   =  |                                  |  =   |   &  |  |   |  ^   |      |      |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /   #   /---------------.    .---------------\       \
+//                                 /       /       / Reset /      \ CAPS  \       \       \
+//                                '-------/       /       /        \       \       \-------'
+//                                       /---------------/          \---------------\
+//                                      /       /  Boot /            \       \       \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+          
+      bindings = <
+&kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                              &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
+&trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &none      &kp F12
+&trans     &kp EXCL  &kp AT  &kp LPAR  &kp RPAR  &kp MINUS                                           &kp MINUS  &kp FSLH  &kp STAR  &kp TILDE  &kp QMARK  &kp UNDER
+&trans     &none     &none   &kp LBRC  &kp RBRC  &kp EQUAL                                           &kp EQUAL  &kp AMPS  &kp PIPE  &kp CARET  &trans     &trans
+                                                 &trans     &trans  &sys_reset   &caps_word  &trans  &trans
+                                                            &trans  &bootloader  &trans      &trans
+      >;
+    };
+
+    adjust_layer {
+// .-----------------------------------------.                                  .-----------------------------------------.
+// |BT Clr| BT1  | BT2  | BT3  | BT4  | BT5  |                                  |      |      |      |      |      |  BLE |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |BT Nxt|      |      |      |      |  V+  |                                  |  B + |      |      |      |      |  USB |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |BT Prv|      |      |      |      |  V-  |                                  |  B - |  <<  | play |  >>  |      |      |
+// |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
+// |      |      |      |      |      | Mute |                                  |      |      |      |      |      |      |
+// '-----------------------------------------/                                  \-----------------------------------------'
+//                                  /   #   /---------------.    .---------------\   #   \
+//                                 /       /       /       /      \       \       \       \ 
+//                                '-------/       /       /        \       \       \-------'
+//                                       /---------------/          \---------------\
+//                                      /       /       /            \       \       \
+//                                     /       /       /              \       \       \
+//                                    '---------------'                '---------------'
+          
+      bindings = <
+&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                              &none         &none       &none     &none       &none  &out OUT_BLE
+&bt BT_NXT  &none         &none         &none         &none         &kp C_VOL_UP                              &kp C_BRI_UP  &none       &none     &none       &none  &out OUT_USB
+&bt BT_PRV  &none         &none         &none         &none         &kp C_VOL_DN                              &kp C_BRI_DN  &kp C_PREV  &kp C_PP  &kp C_NEXT  &none  &none
+&none       &none         &none         &none         &none         &kp C_MUTE                                &none         &none       &none     &none       &none  &none
+                                                                    &trans        &none  &none  &none  &none  &trans
+                                                                                  &none  &none  &none  &none
+      >;
+    };
+
+  };
+};
