@@ -6,7 +6,7 @@
  
 #include "scylla.dtsi"
 
-&default_transform {
+&keymap_transform0 {
 	col-offset = <6>;
 };
 
