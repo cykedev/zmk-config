@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Christian Eiden
+# Copyright (c) 2025 Christian Eiden
 # SPDX-License-Identifier: MIT
  
  
@@ -12,7 +12,7 @@ endif
 if SHIELD_SCYLLA_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "Scylla"
+	default "Scylla MK2"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
