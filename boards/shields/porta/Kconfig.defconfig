@@ -2,24 +2,24 @@
 # SPDX-License-Identifier: MIT
  
  
-if SHIELD_SCYLLA_LEFT
+if SHIELD_PORTA_LEFT
 
 config ZMK_KEYBOARD_NAME
-	default "Scylla Left"
+	default "porta left"
 
 endif
 
-if SHIELD_SCYLLA_RIGHT
+if SHIELD_PORTA_RIGHT
 
 config ZMK_KEYBOARD_NAME
-	default "Scylla MK2"
+	default "porta"
 
 config ZMK_SPLIT_BLE_ROLE_CENTRAL
 	default y
 
 endif
 
-if SHIELD_SCYLLA_LEFT || SHIELD_SCYLLA_RIGHT
+if SHIELD_PORTA_LEFT || SHIELD_PORTA_RIGHT
 
 config ZMK_SPLIT
 	default y

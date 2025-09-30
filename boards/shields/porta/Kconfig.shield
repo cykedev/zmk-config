@@ -1,0 +1,8 @@
+# Copyright (c) 2025 Christian Eiden
+# SPDX-License-Identifier: MIT
+
+config SHIELD_PORTA_LEFT
+	def_bool $(shields_list_contains,porta_left)
+
+config SHIELD_PORTA_RIGHT
+	def_bool $(shields_list_contains,porta_right)
