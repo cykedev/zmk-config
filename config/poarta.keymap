@@ -46,7 +46,8 @@
         #binding-cells = <2>;
         flavor = "hold-preferred";
         tapping-term-ms = <160>;
-        quick-tap-ms = <200>;
+        quick-tap-ms = <250>;
+        require-prior-idle-ms = <125>;
         bindings = <&kp>, <&kp>;
       };
 
@@ -75,8 +76,8 @@
 // |------+------+------+------+------+------|                                  |------+------+------+------+------+------|
 // | Shft |   Z  |   X  |   C  |   D  |   V  |                                  |   K  |   H  |   ,  |  .   |   /  |   \  |
 // '-----------------------------------------/                                  \-----------------------------------------'
-//                                  /  Del  /---------------.    .---------------\  Bsp  \  
-//                                 / RAISE / Space / Enter /      \ Enter \ Space \ LOWER \ 
+//                                  /  Del  /---------------.    .---------------\  Bsp  \
+//                                 / RAISE / Space / Enter /      \ Enter \ Space \ LOWER \
 //                                '-------/ Shift /  CMD  /        \  CMD  \ Shift \-------'
 //                                       /---------------/          \---------------\
 //                                      /  Ctrl /  Opt  /            \  Opt  \ Ctrl  \
@@ -138,7 +139,7 @@
 //                                      /       /  Boot /            \       \       \
 //                                     /       /       /              \       \       \
 //                                    '---------------'                '---------------'
-          
+
       bindings = <
 &kp GRAVE  &kp F1    &kp F2  &kp F3    &kp F4    &kp F5                                              &kp F6     &kp F7    &kp F8    &kp F9     &kp F10    &kp F11
 &trans     &kp LT    &kp GT  &kp LBKT  &kp RBKT  &kp PLUS                                            &kp PLUS   &kp HASH  &kp DLLR  &kp PRCNT  &none      &kp F12
