@@ -39,7 +39,8 @@
 
   behaviors {
 
-      // used for SPACE/SHIFT and ENTER/CMD
+      // used for SPACE/SHIFT
+      // balanced so fast space->letter rolls resolve as space;
       // no quick-tap/require-prior-idle: both force "tap" (space) when shift
       // is pressed shortly after another key -> space instead of shift
       omt: own_mod_tap {
@@ -48,6 +49,19 @@
         #binding-cells = <2>;
         flavor = "balanced";
         tapping-term-ms = <200>;
+        bindings = <&kp>, <&kp>;
+      };
+
+      // used for ENTER/CMD
+      // hold-preferred so same-hand rolled shortcuts (cmd+v, cmd+c, ...)
+      // resolve as cmd regardless of release order
+      emt: enter_mod_tap {
+        compatible = "zmk,behavior-hold-tap";
+        label = "ENTER_MOD_TAP";
+        #binding-cells = <2>;
+        flavor = "hold-preferred";
+        tapping-term-ms = <160>;
+        quick-tap-ms = <200>;
         bindings = <&kp>, <&kp>;
       };
 
@@ -89,7 +103,7 @@
 &kp TAB    &kp Q   &kp W   &kp F   &kp P   &kp  B                                                   &kp  J      &kp L   &kp U      &kp Y    &kp SEMI   &kp EQUAL
 &kp BTAB   &kp A   &kp R   &kp S   &kp T   &kp  G                                                   &kp  M      &kp N   &kp E      &kp I    &kp O      &kp SQT
 &kp LSHFT  &kp Z   &kp X   &kp C   &kp D   &kp  V                                                   &kp  K      &kp H   &kp COMMA  &kp DOT  &kp SLASH  &kp BSLH
-                                           &olt RADEL  &omt LSPC   &omt LENT  &omt RENT  &omt RSPC  &olt LOBSP
+                                           &olt RADEL  &omt LSPC   &emt LENT  &emt RENT  &omt RSPC  &olt LOBSP
                                                        &kp  LCTRL  &kp  LALT  &kp  RALT  &kp  RCTRL
       >;
     };
