@@ -40,14 +40,14 @@
   behaviors {
 
       // used for SPACE/SHIFT and ENTER/CMD
+      // no quick-tap/require-prior-idle: both force "tap" (space) when shift
+      // is pressed shortly after another key -> space instead of shift
       omt: own_mod_tap {
         compatible = "zmk,behavior-hold-tap";
         label = "OWN_MOD_TAP";
         #binding-cells = <2>;
-        flavor = "hold-preferred";
-        tapping-term-ms = <160>;
-        quick-tap-ms = <200>;
-        require-prior-idle-ms = <125>;
+        flavor = "balanced";
+        tapping-term-ms = <200>;
         bindings = <&kp>, <&kp>;
       };
 
