@@ -47,6 +47,7 @@
         flavor = "hold-preferred";
         tapping-term-ms = <160>;
         quick-tap-ms = <200>;
+        require-prior-idle-ms = <125>;
         bindings = <&kp>, <&kp>;
       };
 
@@ -160,13 +161,13 @@
 // |      |      |      |      |      | Mute |                                  |      |      |      |      |      |      |
 // '-----------------------------------------/                                  \-----------------------------------------'
 //                                  /   #   /---------------.    .---------------\   #   \
-//                                 /       /       /       /      \       \       \       \ 
+//                                 /       /       /       /      \       \       \       \
 //                                '-------/       /       /        \       \       \-------'
 //                                       /---------------/          \---------------\
 //                                      /       /       /            \       \       \
 //                                     /       /       /              \       \       \
 //                                    '---------------'                '---------------'
-          
+
       bindings = <
 &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                              &studio_unlock &none       &none     &none       &none  &out OUT_BLE
 &bt BT_NXT  &none         &none         &none         &none         &kp C_VOL_UP                              &kp C_BRI_UP   &none       &none     &none       &none  &out OUT_USB
